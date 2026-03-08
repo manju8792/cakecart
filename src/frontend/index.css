@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================
+   FONT FACES
+   ============================ */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================
+   DESIGN TOKENS — CAKECART
+   Artisan Patisserie: dark chocolate + champagne gold
+   ============================ */
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Core palette */
+    --background: 0.12 0.012 55;          /* Deep chocolate brown */
+    --foreground: 0.93 0.025 80;          /* Warm cream */
+
+    --card: 0.16 0.015 50;               /* Slightly lighter chocolate */
+    --card-foreground: 0.93 0.025 80;    /* Warm cream */
+
+    --popover: 0.18 0.018 50;
+    --popover-foreground: 0.93 0.025 80;
+
+    /* Champagne gold primary */
+    --primary: 0.82 0.12 82;             /* Champagne gold */
+    --primary-foreground: 0.12 0.012 55; /* Deep chocolate */
+
+    --secondary: 0.22 0.018 50;
+    --secondary-foreground: 0.93 0.025 80;
+
+    --muted: 0.20 0.015 50;
+    --muted-foreground: 0.65 0.028 70;
+
+    --accent: 0.72 0.14 60;              /* Warm amber accent */
+    --accent-foreground: 0.12 0.012 55;
+
+    --destructive: 0.58 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.28 0.02 50;
+    --input: 0.22 0.018 50;
+    --ring: 0.82 0.12 82;
+
+    /* Chart colors */
+    --chart-1: 0.82 0.12 82;
+    --chart-2: 0.72 0.14 60;
+    --chart-3: 0.58 0.22 25;
+    --chart-4: 0.65 0.10 200;
+    --chart-5: 0.55 0.08 150;
+
+    /* Sidebar */
+    --sidebar: 0.14 0.013 52;
+    --sidebar-foreground: 0.93 0.025 80;
+    --sidebar-primary: 0.82 0.12 82;
+    --sidebar-primary-foreground: 0.12 0.012 55;
+    --sidebar-accent: 0.20 0.015 50;
+    --sidebar-accent-foreground: 0.93 0.025 80;
+    --sidebar-border: 0.25 0.018 50;
+    --sidebar-ring: 0.82 0.12 82;
+
+    /* Custom CakeCart tokens */
+    --gold: 0.82 0.12 82;
+    --gold-light: 0.90 0.09 85;
+    --gold-dark: 0.65 0.14 75;
+    --choco: 0.12 0.012 55;
+    --choco-mid: 0.20 0.018 52;
+    --cream: 0.93 0.025 80;
+    --rose: 0.72 0.16 15;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* ============================
+   CUSTOM UTILITIES
+   ============================ */
+
+@layer utilities {
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+  .text-cream {
+    color: oklch(var(--cream));
+  }
+  .bg-choco {
+    background-color: oklch(var(--choco));
+  }
+  .bg-choco-mid {
+    background-color: oklch(var(--choco-mid));
+  }
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+  .gradient-gold {
+    background: linear-gradient(135deg, oklch(var(--gold-dark)), oklch(var(--gold)), oklch(var(--gold-light)));
+  }
+  .gradient-choco {
+    background: linear-gradient(180deg, oklch(0.10 0.012 55), oklch(0.15 0.015 55));
+  }
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+}
